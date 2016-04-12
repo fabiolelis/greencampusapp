@@ -10,13 +10,14 @@
     <script src="js/map.js"></script>
 
     <!-- google maps javascript -->
-    <script src="//maps.googleapis.com/maps/api/js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
 
   </head>
   <body ng-controller="MapCtrl">
     <ion-header-bar class="bar-dark" >
       <h1 class="title">Map</h1>
     </ion-header-bar>
+      <button class="button" ng-click="goToIndex()">Index</button>
 
     <ion-content>
       <div id="map" data-tap-disabled="true"></div>

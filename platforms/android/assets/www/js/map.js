@@ -14,8 +14,8 @@ angular.module('map', ['ionic'])
         var map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
 
-        map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true, streetViewControl:false});
-/*        
+        map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false, streetViewControl:false});
+        
         //Marker + infowindow + angularjs compiled ng-click
         var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
         var compiled = $compile(contentString)($scope);
@@ -33,13 +33,13 @@ angular.module('map', ['ionic'])
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.open(map,marker);
         });
-*/
+
 
         $scope.map = map;
       }
       //google.maps.event.addDomListener(window, 'load', init);
       ionic.Platform.ready(initialize);
-      /*
+      
       $scope.centerOnMe = function() {
         if(!$scope.map) {
           return;
@@ -58,7 +58,7 @@ angular.module('map', ['ionic'])
       };
 
       $scope.goToIndex = function() {
-        //window.location.href = 'index.html';
-      };*/
+        window.location.href = 'index.html';
+      };
       
     });

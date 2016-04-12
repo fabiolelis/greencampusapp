@@ -14,7 +14,7 @@ angular.module('map', ['ionic'])
         var map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
 
-        map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true, streetViewControl:false});
+        map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false, streetViewControl:false});
         
         //Marker + infowindow + angularjs compiled ng-click
         var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";

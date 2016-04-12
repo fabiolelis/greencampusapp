@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic','ui.bootstrap'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -26,7 +26,7 @@ angular.module('starter', ['ionic'])
 
 .controller('AppCtrl', function($scope, $http) {
     $scope.data = {};
-    var IP = "172.16.107.116";//10.12.12.26
+    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/service.php";//"172.16.107.116";//10.12.12.26
 
     $scope.postTree = function(){
 
@@ -38,7 +38,7 @@ angular.module('starter', ['ionic'])
         var postData = 'tree='+JSON.stringify(obj);
         $http({
               method : 'POST',
-              url : 'http://'+IP+'/gcadmin/www/service.php',
+              url : address,
               data: postData,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
 
@@ -55,7 +55,7 @@ angular.module('starter', ['ionic'])
        
         $http({
               method : 'GET',
-              url : 'http://'+IP+'/gcadmin/www/service.php?load=tree&id='+$scope.data.idQuery,
+              url : address + '?load=tree&id='+$scope.data.idQuery,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
 
               }).success(function(res){
@@ -72,7 +72,7 @@ angular.module('starter', ['ionic'])
 
         $http({
               method : 'GET',
-              url : 'http://'+IP+'/gcadmin/www/service.php?load=tree',
+              url : address + '?load=tree',
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
 
               }).success(function(res){
@@ -89,7 +89,13 @@ angular.module('starter', ['ionic'])
     $scope.goToMap = function() {
       window.location.href = 'map.html';
     };
+    $scope.goToListTrees = function() {
+      window.location.href = 'listtrees.html';
+    };
+    $scope.goToDetailSpecies = function() {
+      window.location.href = 'detail_species.html';
+    };
     
 
 });
-
+//angular.module('starter', ['ui.bootstrap']);

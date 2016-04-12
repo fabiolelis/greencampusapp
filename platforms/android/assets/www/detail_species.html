@@ -1,0 +1,23 @@
+
+<!doctype html>
+<?php header('Access-Control-Allow-Origin: *'); ?>
+
+<html ng-app="species">
+	<head>
+		<meta charset="utf-8" />
+		<title>Species Detail</title>
+
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+    	<script src="js/detail_species.js"></script>
+
+	</head>
+  	<body ng-controller="speciesCtrl">
+		<div  >
+			Detail species
+			<button ng-click="getSpecies()">Get Species</button>
+		</div>
+		<div id="mybox" name="mybox">
+			 <div ng-bind="res"></div>
+		</div>
+	</body>
+</html>
