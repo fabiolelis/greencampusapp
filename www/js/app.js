@@ -37,7 +37,9 @@ angular.module('starter', ['ionic','ui.bootstrap'])
     $scope.goToListTrees = function() {
       window.location.href = 'list_trees.html';
     };
-    
+    $scope.goToListEvents = function() {
+      window.location.href = 'list_events.html';
+    };
 
 });
 //angular.module('starter', ['ui.bootstrap']);

@@ -1,0 +1,19 @@
+
+<!doctype html>
+<?php header('Access-Control-Allow-Origin: *'); ?>
+
+<html ng-app="tree">
+	<head>
+		<meta charset="utf-8" />
+		<title>Event Detail</title>
+
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+    	<script src="js/detail_event.js"></script>
+
+	</head>
+  	<body ng-controller="treeCtrl">
+		<div id="mybox" name="mybox">
+			 <div ng-bind="res"></div>
+		</div>
+	</body>
+</html>
