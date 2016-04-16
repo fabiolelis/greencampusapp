@@ -6,16 +6,16 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('speciesList', ['ionic'])
+angular.module('treesList', ['ionic'])
 
-.controller('speciesListCtrl', function($scope, $http) {
+.controller('treesListCtrl', function($scope, $http) {
     $scope.data = {};
-    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/species.php";
+    //var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/tree.php";
 
-    //var address = "http://localhost/gcadmin/www/services/species.php";
+    var address = "http://localhost/gcadmin/www/services/tree.php";
 
-    $scope.species = [];
-    $scope.getSpecies = function(){
+    $scope.trees = [];
+    $scope.getTrees = function(){
 
         $http({
               method : 'GET',
@@ -23,15 +23,15 @@ angular.module('speciesList', ['ionic'])
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
 
               }).success(function(res){
-                  $scope.species = res.Species;
+                  $scope.trees = res.Trees;
 
               }).error(function(error){
-                  $scope.species = error;
+                  $scope.trees = error;
         });
 
     };
 
-    $scope.getSpecies();
+    $scope.getTrees();
  
 
 });
