@@ -13,6 +13,10 @@ angular.module('tree', ['ionic'])
     var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/event.php";
     //var address = "http://localhost/gcadmin/www/services/event.php";
 
+    $scope.event = null;
+    $scope.videocode = ""
+    ;
+
     var eventID = 0;
     var url = window.location.href;
     url = url.split("?");
@@ -36,10 +40,13 @@ angular.module('tree', ['ionic'])
 
               }).success(function(res){
                   var obj = res.event;
-                  var strRes = obj.datetime;
+                  $scope.event = obj;
+                  $scope.code = $scope.getVideoCode($scope.event.videos);
+
+                  /*var strRes = obj.datetime;
                   strRes += "\n" + obj.location;
                   strRes += "\n" + obj.description;
-                  $scope.res = strRes;
+                  $scope.res = strRes;*/
 
               }).error(function(error){
                   $scope.res = error;
@@ -51,6 +58,41 @@ angular.module('tree', ['ionic'])
     $scope.goToIndex = function() {
         window.location.href = 'index.html';
     };
+
+    $scope.getVideoCode = function(){
+
+      var videocode = 0;
+      url = $scope.event.videos;
+      url = url.split("?");
+      if(url.length > 0){
+        url = url[1].split("&");
+        for(var i =0; i < url.length; i++){
+          url = url[i].split("=");
+          if(url != null && url[0] == "v"){
+              videocode = url[1];
+          }
+        }
+      }
+      return videocode;
+    }
+
     
 
+})
+.directive('myYoutube', function($sce) {
+  return {
+    restrict: 'EA',
+    scope: { code:'=' },
+    replace: true,
+    template: '<div style="height:400px;"><iframe style="overflow:hidden;height:100%;width:100%" width="100%" height="100%" src="{{url}}" frameborder="0" allowfullscreen></iframe></div>',
+    link: function (scope) {
+        console.log('here');
+        scope.$watch('code', function (newVal) {
+           if (newVal) {
+               scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + scope.code);
+           }
+        });
+    }
+  }
 });
+

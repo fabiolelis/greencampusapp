@@ -6,12 +6,12 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('species', ['ionic'])
+angular.module('tree', ['ionic'])
 
-.controller('speciesCtrl', function($scope,$http) {
+.controller('treeCtrl', function($scope,$http) {
     $scope.data = {};
-    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/species.php";
-    //var address = "http://localhost/gcadmin/www/services/species.php";
+    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/tree.php";
+    //var address = "http://localhost/gcadmin/www/services/tree.php";
 
     var speciesId = 0;
     var url = window.location.href;
@@ -26,7 +26,7 @@ angular.module('species', ['ionic'])
       }
     }
 
-
+    $scope.tree = null;
     $scope.getSpecies = function(){
 
         $http({
@@ -35,12 +35,13 @@ angular.module('species', ['ionic'])
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
 
               }).success(function(res){
-                  var obj = res.species;
-                  var strRes = obj.name;
-                  strRes += "\n" + obj.latinname;
-                  strRes += "\n" + obj.irishname;
-                  strRes += "\n" + obj.description;
-                  $scope.res = strRes;
+                  var obj = res.tree;
+                 /* var strRes = obj.identifier;
+                  strRes += "\n" + obj.speciesname;
+                  strRes += "\n" + obj.longitude;
+                  strRes += "\n" + obj.latitude;
+                  $scope.res = strRes;*/
+                  $scope.tree = obj;
 
               }).error(function(error){
                   $scope.res = error;
@@ -49,8 +50,11 @@ angular.module('species', ['ionic'])
     };
     $scope.getSpecies();
    
+    $scope.goToSpecies = function() {
+        window.location.href = 'detail_species.html?id='+$scope.tree.speciesid;
+    };
     $scope.goToIndex = function() {
-        window.location.href = 'index.html';
+      window.location.href = 'index.html';
     };
     
 

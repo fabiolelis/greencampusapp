@@ -26,76 +26,20 @@ angular.module('starter', ['ionic','ui.bootstrap'])
 
 .controller('AppCtrl', function($scope, $http) {
     $scope.data = {};
-    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/service.php";//"172.16.107.116";//10.12.12.26
-
-    $scope.postTree = function(){
-
-        var obj = {
-              "name": $scope.data.name,//"tttt",
-              "age": $scope.data.age
-        };
-
-        var postData = 'tree='+JSON.stringify(obj);
-        $http({
-              method : 'POST',
-              url : address,
-              data: postData,
-              headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
-
-              }).success(function(res){
-                  $scope.res = res;
-
-              }).error(function(error){
-                $scope.res = error;
-        });
-
-    };
-
-    $scope.getTree = function(){
-       
-        $http({
-              method : 'GET',
-              url : address + '?load=tree&id='+$scope.data.idQuery,
-              headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
-
-              }).success(function(res){
-                  $scope.res = res;
-
-              }).error(function(error){
-                  $scope.res = error;
-        });
-
-    };
-
-    $scope.getAllTrees = function(){
-
-
-        $http({
-              method : 'GET',
-              url : address + '?load=tree',
-              headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
-
-              }).success(function(res){
-                  $scope.res = res;
-
-              }).error(function(error){
-                $scope.res = error;
-        });
-
-    };
-
-
+    
 
     $scope.goToMap = function() {
       window.location.href = 'map.html';
     };
+    $scope.goToListSpecies = function() {
+      window.location.href = 'list_species.html';
+    };
     $scope.goToListTrees = function() {
-      window.location.href = 'listtrees.html';
+      window.location.href = 'list_trees.html';
     };
-    $scope.goToDetailSpecies = function() {
-      window.location.href = 'detail_species.html';
+    $scope.goToListEvents = function() {
+      window.location.href = 'list_events.html';
     };
-    
 
 });
 //angular.module('starter', ['ui.bootstrap']);

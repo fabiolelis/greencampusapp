@@ -1,0 +1,58 @@
+
+<!doctype html>
+<?php header('Access-Control-Allow-Origin: *'); ?>
+
+<html ng-app="tree">
+	<head>
+		<meta charset="utf-8" />
+		<title>Tree Detail</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/detail_tree.js"></script>
+
+	</head>
+  	<body ng-controller="treeCtrl" style="margin-left: 10px;margin-right: 10px;">
+
+  		<h2 style="color:green;" >{{tree.identifier}}</h2>
+  		<table style="padding: 10px;">
+  			<tr>
+  				<td style="color:green; font-weight: bold; font-size: 14;">
+
+  				  	Species:
+  				</td>
+  				<td >
+		  			{{tree.speciesname}}
+  				</td>
+  			</tr>
+  			<tr>
+  				<td style="color:green; font-weight: bold; font-size: 14;">
+  				  	Age:
+  				</td>
+  				<td >
+		  			{{tree.age}}
+  				</td>
+  			</tr>
+  			<tr>
+  				<td style="color:green; font-weight: bold; font-size: 14;">
+  				  	Longitude:
+  				</td>
+  				<td >
+		  			{{tree.longitude}}
+  				</td>
+  			</tr>
+  			<tr>
+  				<td style="color:green; font-weight: bold; font-size: 14;">
+  				  	Latitude:
+  				</td>
+  				<td >
+		  			{{tree.latitude}}
+  				</td>
+  			</tr>
+  		</table>
+  		<button  class="btn btn-block btn-primary" style="margin-top: 10px" ng-click="goToSpecies()">See details of species {{tree.speciesname}}</button>
+      <button  class="btn btn-block btn-primary" style="margin-top: 10px" ng-click="goToIndex()">Home</button>
+
+
+	</body>
+</html>

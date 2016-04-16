@@ -14,9 +14,11 @@
 
 	</head>
   	<body ng-controller="treeCtrl" style="margin-left: 10px;margin-right: 10px;">
-		<div id="mybox" name="mybox">
-			 <div ng-bind="res"></div>
-		</div>
+		
+  		<h2 style="color:green">{{event.datetime}} - {{event.location}}</h2> 
+  		<p style="margin-top: 10px;">{{event.description}}</p>
+  		<img style="margin-top: 10px;max-width: 100%;" src="{{event.imagesweburl}}"/>
+ 		<div my-youtube code="code" style="margin-top: 10px;max-width: 100%;"></div>
 		<button  class="btn btn-block btn-primary" style="margin-top: 10px" ng-click="goToIndex()">Home</button>
 
 	</body>

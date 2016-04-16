@@ -6,17 +6,18 @@
 		<script src="js/controllers.js"></script>
 
 
-		<script src="js/list_trees.js"></script>
+		<script src="js/list_events.js"></script>
 		<link href="lib/ionic/css/ionic.css" rel="stylesheet">
 
 	</head>
-	<body ng-app="treesList" ng-controller="treesListCtrl">
+	<body ng-app="eventsList" ng-controller="eventsListCtrl">
 
 		    <ion-list>
-		      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="t in trees" type="item-text-wrap" href="detail_tree.html?id={{t.id}}">
-		        <img ng-src="{{t.mainimage}}">
-		        <h2>{{t.identifier}}</h2>
-		        <p>{{t.speciesname}}</p>
+		      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="e in events" type="item-text-wrap" href="detail_event.html?id={{e.id}}">
+		        <img ng-src="http://lelis2008.cloudapp.net/greencampusadmin/www/assets/images/events/phpJtWcAl9008.jpg">
+		        <h2>{{e.datetime}}</h2>
+		        <h2>{{e.location}}<h2>
+		        <p>{{e.description}}<p>
 		        
 		        <i class="icon ion-chevron-right icon-accessory"></i>
 
