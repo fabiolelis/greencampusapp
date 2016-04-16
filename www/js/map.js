@@ -1,7 +1,6 @@
 angular.module('map', ['ionic'])
 
     .controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
-      //$scope.init = function() {
 
       function initialize() {
         
@@ -32,6 +31,7 @@ angular.module('map', ['ionic'])
         markers = Array();
         infoWindows = Array();
 
+        //I don't have any idea how I figured it out. It was just a feeling, I'm just too good.
         var strIcon = "http:/lelis2008.cloudapp.net/greencampusadmin/www/assets/images/trees/tree_icon.png";
         if(ionic.Platform.isAndroid()){
             strIcon = "img/tree_icon.png";
@@ -51,15 +51,15 @@ angular.module('map', ['ionic'])
 
             //ionic.Platform.isAndroid();
 
-            var id = $scope.trees[i].id;
+            //var id = $scope.trees[i].id;
             var content = "<div>" +
                         "<h4 style=\"color:green;\">"+ $scope.trees[i].identifier + "</h4>"+
                         "<p>Age: "+ $scope.trees[i].age +"</p>" + 
                         "<p>Latitude: "+ $scope.trees[i].latitude +"</p>" + 
                         "<p>Longitude: "+ $scope.trees[i].longitude +"</p>" + 
                         "<img src= \""+ $scope.trees[i].mainimage +"\" style=\"width:180px;height:100px;\">" +
-                        "<button class=\"btn btn-block btn-primary\" style=\"margin:2px;\" ng-click=\"clickTree("+id+")\">"+
-                        " See details  </button>"+ 
+                        "<button class=\"btn btn-block btn-primary\" style=\"margin:2px;\" ng-click=\"goToTreeDetail("+$scope.trees[i].id+")\">" +
+                        " See details  </button>"+
                         "</div>";
 
             var infoWindow = new google.maps.InfoWindow({
@@ -82,7 +82,7 @@ angular.module('map', ['ionic'])
             markers.push(marker);
             
         }
-      }
+      };
 
       $scope.getTrees = function(){
 
@@ -101,18 +101,21 @@ angular.module('map', ['ionic'])
               }).error(function(error){
                   $scope.trees = error;
         });
-      }
+      };
          
       
-  
+      var clickTree = function (id){
+        $scope.clickTree(id);
 
-      $scope.clickTree = function(id) {
+      };
+
+      $scope.goToTreeDetail = function(id) {
         window.location.href = 'detail_tree.html?id='+id;
       };
-/*
+
       $scope.goToIndex = function() {
         window.location.href = 'index.html';
       };
-      */
+      
       
     });

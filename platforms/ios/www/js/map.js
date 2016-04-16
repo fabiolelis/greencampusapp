@@ -1,7 +1,6 @@
 angular.module('map', ['ionic'])
 
     .controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
-      //$scope.init = function() {
 
       function initialize() {
         
@@ -32,16 +31,25 @@ angular.module('map', ['ionic'])
         markers = Array();
         infoWindows = Array();
 
+        //I don't have any idea how I figured it out. It was just a feeling, I'm just too good.
+        var strIcon = "http:/lelis2008.cloudapp.net/greencampusadmin/www/assets/images/trees/tree_icon.png";
+        if(ionic.Platform.isAndroid()){
+            strIcon = "img/tree_icon.png";
+        }
+
+
         for(var i in $scope.trees)
         {
             var location = new google.maps.LatLng($scope.trees[i].latitude, $scope.trees[i].longitude);
             var marker = new google.maps.Marker({
                 position : location,
                 map : $scope.map,
-                icon: "http:/localhost/gcadmin/www/assets/images/tree_icon.png",
+                icon: strIcon,
 
                 infoWindowIndex : i 
             });
+
+            //ionic.Platform.isAndroid();
 
             var id = $scope.trees[i].id;
             var content = "<div>" +
@@ -95,7 +103,7 @@ angular.module('map', ['ionic'])
         });
       }
          
-      /*
+      
   
 
       $scope.clickTree = function(id) {
@@ -105,6 +113,6 @@ angular.module('map', ['ionic'])
       $scope.goToIndex = function() {
         window.location.href = 'index.html';
       };
-      */
+      
       
     });

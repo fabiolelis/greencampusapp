@@ -1,7 +1,6 @@
 angular.module('map', ['ionic'])
 
     .controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
-      //$scope.init = function() {
 
       function initialize() {
         
@@ -32,6 +31,7 @@ angular.module('map', ['ionic'])
         markers = Array();
         infoWindows = Array();
 
+        //I don't have any idea how I figured it out. It was just a feeling, I'm just too good.
         var strIcon = "http:/lelis2008.cloudapp.net/greencampusadmin/www/assets/images/trees/tree_icon.png";
         if(ionic.Platform.isAndroid()){
             strIcon = "img/tree_icon.png";
@@ -109,10 +109,10 @@ angular.module('map', ['ionic'])
       $scope.clickTree = function(id) {
         window.location.href = 'detail_tree.html?id='+id;
       };
-/*
+
       $scope.goToIndex = function() {
         window.location.href = 'index.html';
       };
-      */
+      
       
     });

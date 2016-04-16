@@ -15,13 +15,14 @@
     <script src="https://maps.googleapis.com/maps/api/js"></script>
 
   </head>
+
+
   <body ng-controller="MapCtrl">
-    <ion-header-bar class="bar-dark" >
+    <button  class="btn btn-block btn-primary" style="margin-top: 20px;" ng-click="goToIndex()">Home</button>
 
     <ion-content style="margin:20px;">
       <div id="map" data-tap-disabled="true"></div>
     </ion-content>
-    <button  class="btn btn-block btn-primary" ng-click="goToIndex()">Home</button>
 
   </body>
 </html>
