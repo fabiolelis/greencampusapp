@@ -89,8 +89,8 @@ angular.module('starter', ['ionic','ui.bootstrap'])
     $scope.goToMap = function() {
       window.location.href = 'map.html';
     };
-    $scope.goToListTrees = function() {
-      window.location.href = 'listtrees.html';
+    $scope.goToListSpecies = function() {
+      window.location.href = 'list_species.html';
     };
     $scope.goToDetailSpecies = function() {
       window.location.href = 'detail_species.html';

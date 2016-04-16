@@ -8,16 +8,30 @@
 
 angular.module('species', ['ionic'])
 
-.controller('speciesCtrl', function($scope, $http) {
+.controller('speciesCtrl', function($scope,$http) {
     $scope.data = {};
-    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/service.php";
-    //var address = "http://localhost/gcadmin/www/service.php";
+    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/species.php";
+    //var address = "http://localhost/gcadmin/www/services/species.php";
+
+    var speciesId = 0;
+    var url = window.location.href;
+    url = url.split("?");
+    if(url.length > 0){
+      url = url[1].split("&");
+      for(var i =0; i < url.length; i++){
+        url = url[i].split("=");
+        if(url != null && url[0] == "id"){
+            speciesId = url[1];
+        }
+      }
+    }
+
 
     $scope.getSpecies = function(){
 
         $http({
               method : 'GET',
-              url : address + '?load=species&id=1',
+              url : address + '?id=' + speciesId,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
 
               }).success(function(res){
@@ -33,7 +47,7 @@ angular.module('species', ['ionic'])
         });
 
     };
-
+    $scope.getSpecies();
    
     $scope.goToIndex = function() {
         window.location.href = 'index.html';
