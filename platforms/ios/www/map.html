@@ -8,6 +8,8 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="js/map.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
 
     <!-- google maps javascript -->
     <script src="https://maps.googleapis.com/maps/api/js"></script>
@@ -16,9 +18,10 @@
   <body ng-controller="MapCtrl">
     <ion-header-bar class="bar-dark" >
 
-    <ion-content>
+    <ion-content style="margin:20px;">
       <div id="map" data-tap-disabled="true"></div>
     </ion-content>
+    <button  class="btn btn-block btn-primary" ng-click="goToIndex()">Home</button>
 
   </body>
 </html>

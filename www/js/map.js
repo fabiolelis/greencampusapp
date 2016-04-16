@@ -1,64 +1,118 @@
 angular.module('map', ['ionic'])
 
-    .controller('MapCtrl', function($scope, $ionicLoading, $compile) {
+    .controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
       //$scope.init = function() {
+
       function initialize() {
         
         var myLatlng = new google.maps.LatLng(53.552879, -9.947323);
+        
+
+        $scope.trees = [];
         
         var mapOptions = {
           center: myLatlng,
           zoom: 16,
           mapTypeId: google.maps.MapTypeId.TERRAIN
         };
-        var map = new google.maps.Map(document.getElementById("map"),
+        $scope.map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
 
-        map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false, streetViewControl:false});
+        $scope.map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false, streetViewControl:false});
         
-        //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-        var compiled = $compile(contentString)($scope);
+        
 
-        var infowindow = new google.maps.InfoWindow({
-          content: compiled[0]
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Uluru (Ayers Rock)'
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
-
-        $scope.map = map;
+        $scope.getTrees();
       }
-      //google.maps.event.addDomListener(window, 'load', init);
-      ionic.Platform.ready(initialize);
-      
-      $scope.centerOnMe = function() {
-        if(!$scope.map) {
-          return;
+
+      ionic.Platform.ready(initialize);      
+
+      $scope.buildMarkers = function(){
+
+        markers = Array();
+        infoWindows = Array();
+
+        var strIcon = "http:/lelis2008.cloudapp.net/greencampusadmin/www/assets/images/trees/tree_icon.png";
+        if(ionic.Platform.isAndroid()){
+            strIcon = "img/tree_icon.png";
         }
 
-        $scope.loading = $ionicLoading.show({
-          content: 'Getting current location...',
-          showBackdrop: false
+
+        for(var i in $scope.trees)
+        {
+            var location = new google.maps.LatLng($scope.trees[i].latitude, $scope.trees[i].longitude);
+            var marker = new google.maps.Marker({
+                position : location,
+                map : $scope.map,
+                icon: strIcon,
+
+                infoWindowIndex : i 
+            });
+
+            //ionic.Platform.isAndroid();
+
+            var id = $scope.trees[i].id;
+            var content = "<div>" +
+                        "<h4 style=\"color:green;\">"+ $scope.trees[i].identifier + "</h4>"+
+                        "<p>Age: "+ $scope.trees[i].age +"</p>" + 
+                        "<p>Latitude: "+ $scope.trees[i].latitude +"</p>" + 
+                        "<p>Longitude: "+ $scope.trees[i].longitude +"</p>" + 
+                        "<img src= \""+ $scope.trees[i].mainimage +"\" style=\"width:180px;height:100px;\">" +
+                        "<button class=\"btn btn-block btn-primary\" style=\"margin:2px;\" ng-click=\"clickTree("+id+")\">"+
+                        " See details  </button>"+ 
+                        "</div>";
+
+            var infoWindow = new google.maps.InfoWindow({
+                content : content
+            });
+
+            google.maps.event.addListener(marker, 'click', 
+                function(event)
+                {
+                    //map.panTo(event.latLng);
+                    //map.setZoom(5);
+                    for(var innerI in $scope.trees)
+                        infoWindows[innerI].close();
+
+                    infoWindows[this.infoWindowIndex].open($scope.map, this);
+                }
+            );
+
+            infoWindows.push(infoWindow);
+            markers.push(marker);
+            
+        }
+      }
+
+      $scope.getTrees = function(){
+
+        var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/tree.php";
+        //var address = "http://localhost/gcadmin/www/services/tree.php";
+
+        $http({
+              method : 'GET',
+              url : address,
+              headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
+
+              }).success(function(res){
+                  $scope.trees = res.Trees;
+                  $scope.buildMarkers();
+
+              }).error(function(error){
+                  $scope.trees = error;
         });
-
-
-      };
+      }
+         
       
-      $scope.clickTest = function() {
-        alert('Example of infowindow with ng-click')
-      };
+  
 
+      $scope.clickTree = function(id) {
+        window.location.href = 'detail_tree.html?id='+id;
+      };
+/*
       $scope.goToIndex = function() {
         window.location.href = 'index.html';
       };
+      */
       
     });

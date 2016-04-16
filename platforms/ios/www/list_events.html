@@ -14,7 +14,7 @@
 
 		    <ion-list>
 		      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="e in events" type="item-text-wrap" href="detail_event.html?id={{e.id}}">
-		        <img ng-src="http://lelis2008.cloudapp.net/greencampusadmin/www/assets/images/events/phpJtWcAl9008.jpg">
+		        <img ng-src="{{e.imagesweburl}}">
 		        <h2>{{e.datetime}}</h2>
 		        <h2>{{e.location}}<h2>
 		        <p>{{e.description}}<p>
