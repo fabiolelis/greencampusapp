@@ -26,7 +26,7 @@ angular.module('tree', ['ionic'])
       }
     }
 
-
+    $scope.tree = null;
     $scope.getSpecies = function(){
 
         $http({
@@ -36,11 +36,12 @@ angular.module('tree', ['ionic'])
 
               }).success(function(res){
                   var obj = res.tree;
-                  var strRes = obj.identifier;
+                 /* var strRes = obj.identifier;
                   strRes += "\n" + obj.speciesname;
                   strRes += "\n" + obj.longitude;
                   strRes += "\n" + obj.latitude;
-                  $scope.res = strRes;
+                  $scope.res = strRes;*/
+                  $scope.tree = obj;
 
               }).error(function(error){
                   $scope.res = error;
@@ -49,8 +50,11 @@ angular.module('tree', ['ionic'])
     };
     $scope.getSpecies();
    
+    $scope.goToSpecies = function() {
+        window.location.href = 'detail_species.html?id='+$scope.tree.speciesid;
+    };
     $scope.goToIndex = function() {
-        window.location.href = 'index.html';
+      window.location.href = 'index.html';
     };
     
 

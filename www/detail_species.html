@@ -9,11 +9,15 @@
 
 		<script src="lib/ionic/js/ionic.bundle.js"></script>
     	<script src="js/detail_species.js"></script>
+    	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
 
 	</head>
-  	<body ng-controller="speciesCtrl">
+  	<body ng-controller="speciesCtrl" style="margin-left: 10px;margin-right: 10px;">
 		<div id="mybox" name="mybox">
 			 <div ng-bind="res"></div>
 		</div>
+		<button  class="btn btn-block btn-primary" style="margin-top: 10px" ng-click="goToIndex()">Home</button>
+
 	</body>
 </html>

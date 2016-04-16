@@ -24,6 +24,10 @@ angular.module('speciesList', ['ionic'])
     };
 
     $scope.getSpecies();
+
+    $scope.goToIndex = function() {
+      window.location.href = 'index.html';
+    };
  
 
 });
