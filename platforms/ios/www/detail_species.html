@@ -14,9 +14,20 @@
 
 	</head>
   	<body ng-controller="speciesCtrl" style="margin-left: 10px;margin-right: 10px;">
-		<div id="mybox" name="mybox">
-			 <div ng-bind="res"></div>
+		
+		<h2 style="color:green">{{species.name}}</h2> 
+		<h4 style="color:green">{{species.irishname}}</h4> 
+		<h4 >({{species.latinname}})</h4> 
+  		<p style="margin-top: 10px;">{{species.description}}</p>
+
+		<div ng-repeat="char in species.characteristics">
+		  	<h2> {{char.title}} </h2>
+		  	<h2> {{char.description}} </h2>
+		  	<img src="{{char.weburlimage}}">
+		  	
 		</div>
+  		
+
 		<button  class="btn btn-block btn-primary" style="margin-top: 10px" ng-click="goToIndex()">Home</button>
 
 	</body>
