@@ -10,8 +10,8 @@ angular.module('species', ['ionic'])
 
 .controller('speciesCtrl', function($scope,$http) {
     $scope.data = {};
-    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/species.php";
-    //var address = "http://localhost/gcadmin/www/services/species.php";
+    //var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/species.php";
+    var address = "http://localhost/gcadmin/www/services/species.php";
 
     var speciesId = 0;
     var url = window.location.href;

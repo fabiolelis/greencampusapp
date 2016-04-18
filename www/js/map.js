@@ -52,14 +52,15 @@ angular.module('map', ['ionic'])
             //ionic.Platform.isAndroid();
 
             //var id = $scope.trees[i].id;
-            var content = "<div>" +
+            var content = "<div style='width:200px;'>" +
                         "<h4 style=\"color:green;\">"+ $scope.trees[i].identifier + "</h4>"+
                         "<p>Age: "+ $scope.trees[i].age +"</p>" + 
                         "<p>Latitude: "+ $scope.trees[i].latitude +"</p>" + 
                         "<p>Longitude: "+ $scope.trees[i].longitude +"</p>" + 
                         "<img src= \""+ $scope.trees[i].mainimage +"\" style=\"width:180px;height:100px;\">" +
-                        "<button class=\"btn btn-block btn-primary\" style=\"margin:2px;\" ng-click=\"goToTreeDetail("+$scope.trees[i].id+")\">" +
-                        " See details  </button>"+
+                        "<a href='detail_tree.html?id="+$scope.trees[i].id+"'><button class=\"btn btn-primary\" "+
+                        " style=\"margin-top:5px;width:180px\" >" +
+                        " See details  </button></a>"+
                         "</div>";
 
             var infoWindow = new google.maps.InfoWindow({
@@ -103,11 +104,6 @@ angular.module('map', ['ionic'])
         });
       };
          
-      
-      var clickTree = function (id){
-        $scope.clickTree(id);
-
-      };
 
       $scope.goToTreeDetail = function(id) {
         window.location.href = 'detail_tree.html?id='+id;

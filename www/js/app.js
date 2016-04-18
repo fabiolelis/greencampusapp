@@ -40,6 +40,12 @@ angular.module('starter', ['ionic','ui.bootstrap'])
     $scope.goToListEvents = function() {
       window.location.href = 'list_events.html';
     };
+    $scope.goToPartners = function() {
+      window.location.href = 'partners.html';
+    };
+    $scope.goToHome = function() {
+      window.location.href = 'index.html';
+    };
 
 });
 //angular.module('starter', ['ui.bootstrap']);
