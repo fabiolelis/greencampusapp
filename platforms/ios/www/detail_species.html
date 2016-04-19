@@ -10,22 +10,22 @@
 		<script src="lib/ionic/js/ionic.bundle.js"></script>
     	<script src="js/detail_species.js"></script>
     	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
+    	<style>
+    		.fontgreen{
+    			color:green;
+    		}
+    	</style>
 
 	</head>
   	<body ng-controller="speciesCtrl" style="margin-left: 10px;margin-right: 10px;">
 		
-		<h2 style="color:green">{{species.name}}</h2> 
+		<h1 style="color:green">{{species.name}}</h1> 
 		<h4 style="color:green">{{species.irishname}}</h4> 
 		<h4 >({{species.latinname}})</h4> 
   		<p style="margin-top: 10px;">{{species.description}}</p>
 
-		<div ng-repeat="char in species.characteristics">
-		  	<h2> {{char.title}} </h2>
-		  	<h2> {{char.description}} </h2>
-		  	<img src="{{char.weburlimage}}">
-		  	
-		</div>
+		
+		<div ng-bind-html="characshtml"></div>
   		
 
 		<button  class="btn btn-block btn-primary" style="margin-top: 10px" ng-click="goToIndex()">Home</button>

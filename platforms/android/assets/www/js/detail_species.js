@@ -26,7 +26,7 @@ angular.module('species', ['ionic'])
       }
     }
 
-
+    $scope.species;
     $scope.getSpecies = function(){
 
         $http({
@@ -36,11 +36,8 @@ angular.module('species', ['ionic'])
 
               }).success(function(res){
                   var obj = res.species;
-                  var strRes = obj.name;
-                  strRes += "\n" + obj.latinname;
-                  strRes += "\n" + obj.irishname;
-                  strRes += "\n" + obj.description;
-                  $scope.res = strRes;
+                  $scope.species = obj;
+                  $scope.buildHtml();
 
               }).error(function(error){
                   $scope.res = error;
@@ -48,7 +45,39 @@ angular.module('species', ['ionic'])
 
     };
     $scope.getSpecies();
-   
+       
+    $scope.buildHtml = function() {
+            
+      var str = "";
+      for(var i in $scope.species.characteristics){
+
+        var charac = $scope.species.characteristics[i];
+
+        str += "<div ";
+        if(charac.idparent % 2 != 0){
+          str += " class = \"altergrey\" ";
+        }
+        str += ">";
+
+        
+        if(charac.idparent == 0){
+          str +=  "<h3 class=\"fontgreen\"> "+ charac.title +"</h3>";
+        }
+        else{
+          str +=  "<h5> "+ charac.title +"</h5>";
+        }
+
+        str += "<p> " + charac.description + "</p>";
+        str += "<img class=\"treepic\" src=\""+charac.weburlimage+"\">";
+        str += "</div>"
+        
+      }
+      
+      $scope.characshtml = str;
+
+
+    };
+    
     $scope.goToIndex = function() {
         window.location.href = 'index.html';
     };

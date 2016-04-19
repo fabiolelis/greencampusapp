@@ -10,8 +10,8 @@ angular.module('species', ['ionic'])
 
 .controller('speciesCtrl', function($scope,$http) {
     $scope.data = {};
-    //var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/species.php";
-    var address = "http://localhost/gcadmin/www/services/species.php";
+    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/species.php";
+    //var address = "http://localhost/gcadmin/www/services/species.php";
 
     var speciesId = 0;
     var url = window.location.href;
@@ -46,36 +46,49 @@ angular.module('species', ['ionic'])
     };
     $scope.getSpecies();
    
-    $scope.htmlcharacsteristics = [];
+    //$scope.orderedCharacsteristics = [];
+    
     $scope.buildHtml = function() {
-       
+            
+      var str = "";
       for(var i in $scope.species.characteristics){
 
+        str += "<div>"
         var charac = $scope.species.characteristics[i];
-        var str = "<div>";
+        
+        if(charac.idparent == 0){
+          str +=  "<h3 class=\"fontgreen\"> "+ charac.title +"</h3>";
+        }
+        else{
+          str +=  "<h5> "+ charac.title +"</h5>";
+        }
 
-        str += charac.id;
-        str += "</div>";
-        $scope.htmlcharacsteristics.push(str);
+        str += "<p> " + charac.description + "</p>";
+        str += "<img style=\"margin-top: 10px;max-width: 100%;\" src=\""+charac.weburlimage+"\">";
+        str += "</div>"
+
+        
       }
+      
+      $scope.characshtml = str;
 
 
     };
-
+/*
      $scope.orderCharacs = function() {
        
       for(var i in $scope.species.characteristics){
 
         var charac = $scope.species.characteristics[i];
-        var str = "<div>";
+        if(charac.)
+        
 
-        str += charac.id;
-        str += "</div>";
         $scope.htmlcharacsteristics.push(str);
       }
 
 
-    };
+
+    };*/
     
     $scope.goToIndex = function() {
         window.location.href = 'index.html';
