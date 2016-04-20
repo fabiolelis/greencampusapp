@@ -10,8 +10,8 @@ angular.module('tree', ['ionic'])
 
 .controller('treeCtrl', function($scope,$http) {
     $scope.data = {};
-    //var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/event.php";
-    var address = "http://localhost/gcadmin/www/services/event.php";
+    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/event.php";
+    //var address = "http://localhost/gcadmin/www/services/event.php";
 
     $scope.event = null;
     $scope.videocode = "";

@@ -99,6 +99,8 @@ angular.module('map', ['ionic'])
                   $scope.trees = res.Trees;
                   $scope.buildMarkers();
                   $scope.loading = false;
+                  $scope.connError = false;
+
 
               }).error(function(error){
                   $scope.trees = error;

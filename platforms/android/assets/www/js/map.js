@@ -2,10 +2,11 @@ angular.module('map', ['ionic'])
 
     .controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
 
+      $scope.loading = true;
+      $scope.connError = false;
+        
       function initialize() {
 
-        $scope.loading = true;
-        $scope.connError = false;
         
         var myLatlng = new google.maps.LatLng(53.552879, -9.947323);
         
@@ -99,6 +100,8 @@ angular.module('map', ['ionic'])
                   $scope.trees = res.Trees;
                   $scope.buildMarkers();
                   $scope.loading = false;
+                  $scope.connError = false;
+
 
               }).error(function(error){
                   $scope.trees = error;
