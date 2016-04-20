@@ -3,10 +3,12 @@ angular.module('map', ['ionic'])
     .controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
 
       function initialize() {
+
+        $scope.loading = true;
+        $scope.connError = false;
         
         var myLatlng = new google.maps.LatLng(53.552879, -9.947323);
         
-
         $scope.trees = [];
         
         var mapOptions = {
@@ -19,8 +21,6 @@ angular.module('map', ['ionic'])
 
         $scope.map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false, streetViewControl:false});
         
-        
-
         $scope.getTrees();
       }
 
@@ -98,9 +98,12 @@ angular.module('map', ['ionic'])
               }).success(function(res){
                   $scope.trees = res.Trees;
                   $scope.buildMarkers();
+                  $scope.loading = false;
 
               }).error(function(error){
                   $scope.trees = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
         });
       };
          

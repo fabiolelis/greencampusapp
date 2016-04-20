@@ -9,6 +9,9 @@ angular.module('eventsList', ['ionic'])
     $scope.events = [];
     $scope.getEvents = function(){
 
+        $scope.loading = true;
+        $scope.connError = false;
+
         $http({
               method : 'GET',
               url : address,
@@ -16,9 +19,18 @@ angular.module('eventsList', ['ionic'])
 
               }).success(function(res){
                   $scope.events = res.Events;
+                  $scope.loading = false;
+                  for(var i =0; i < $scope.events.length; i++){
+                    var images = $scope.events[i].imagesweburl;
+                    var arrayImages = images.split(";");
+
+                    $scope.events[i].imagesweburl = arrayImages[0];
+                  }
 
               }).error(function(error){
                   $scope.events = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
         });
 
     };

@@ -29,6 +29,9 @@ angular.module('species', ['ionic'])
     $scope.species;
     $scope.getSpecies = function(){
 
+        $scope.loading = true;
+        $scope.connError = false;
+
         $http({
               method : 'GET',
               url : address + '?id=' + speciesId,
@@ -38,23 +41,31 @@ angular.module('species', ['ionic'])
                   var obj = res.species;
                   $scope.species = obj;
                   $scope.buildHtml();
+                  $scope.loading = false;
 
               }).error(function(error){
                   $scope.res = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
+
         });
 
     };
     $scope.getSpecies();
-   
-    //$scope.orderedCharacsteristics = [];
-    
+       
     $scope.buildHtml = function() {
             
       var str = "";
       for(var i in $scope.species.characteristics){
 
-        str += "<div>"
         var charac = $scope.species.characteristics[i];
+
+        str += "<div ";
+        if(charac.idparent % 2 != 0){
+          str += " class = \"altergrey\" ";
+        }
+        str += ">";
+
         
         if(charac.idparent == 0){
           str +=  "<h3 class=\"fontgreen\"> "+ charac.title +"</h3>";
@@ -64,9 +75,8 @@ angular.module('species', ['ionic'])
         }
 
         str += "<p> " + charac.description + "</p>";
-        str += "<img style=\"margin-top: 10px;max-width: 100%;\" src=\""+charac.weburlimage+"\">";
+        str += "<img class=\"treepic\" src=\""+charac.weburlimage+"\">";
         str += "</div>"
-
         
       }
       
@@ -74,21 +84,6 @@ angular.module('species', ['ionic'])
 
 
     };
-/*
-     $scope.orderCharacs = function() {
-       
-      for(var i in $scope.species.characteristics){
-
-        var charac = $scope.species.characteristics[i];
-        if(charac.)
-        
-
-        $scope.htmlcharacsteristics.push(str);
-      }
-
-
-
-    };*/
     
     $scope.goToIndex = function() {
         window.location.href = 'index.html';

@@ -8,6 +8,9 @@ angular.module('treesList', ['ionic'])
     $scope.trees = [];
     $scope.getTrees = function(){
 
+        $scope.loading = true;
+        $scope.connError = false;
+        
         $http({
               method : 'GET',
               url : address,
@@ -15,9 +18,11 @@ angular.module('treesList', ['ionic'])
 
               }).success(function(res){
                   $scope.trees = res.Trees;
-
+                  $scope.loading = false;
               }).error(function(error){
                   $scope.trees = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
         });
 
     };

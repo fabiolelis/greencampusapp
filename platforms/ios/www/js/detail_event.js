@@ -10,12 +10,12 @@ angular.module('tree', ['ionic'])
 
 .controller('treeCtrl', function($scope,$http) {
     $scope.data = {};
-    var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/event.php";
-    //var address = "http://localhost/gcadmin/www/services/event.php";
+    //var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/event.php";
+    var address = "http://localhost/gcadmin/www/services/event.php";
 
     $scope.event = null;
-    $scope.videocode = ""
-    ;
+    $scope.videocode = "";
+    $scope.images = Array();
 
     var eventID = 0;
     var url = window.location.href;
@@ -33,6 +33,9 @@ angular.module('tree', ['ionic'])
 
     $scope.getEvents = function(){
 
+        $scope.loading = true;
+        $scope.connError = false;
+
         $http({
               method : 'GET',
               url : address + '?id=' + eventID,
@@ -41,19 +44,31 @@ angular.module('tree', ['ionic'])
               }).success(function(res){
                   var obj = res.event;
                   $scope.event = obj;
-                  $scope.code = $scope.getVideoCode($scope.event.videos);
 
-                  /*var strRes = obj.datetime;
-                  strRes += "\n" + obj.location;
-                  strRes += "\n" + obj.description;
-                  $scope.res = strRes;*/
+                  //$scope.event.imagesweburl = "http://lelis2008.cloudapp.net/greencampusadmin/www//assets/images/events/phpJtWcAl9008.jpg;" +
+                  //"http://localhost/gcadmin/www/assets/images/partners/cnw.JPG;";
+
+                  $scope.code = $scope.getVideoCode($scope.event.videos);
+                  $scope.images = $scope.event.imagesweburl.split(';');
+
+                  $scope.loading = false;
+                  $scope.connError = false;
 
               }).error(function(error){
                   $scope.res = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
         });
 
     };
     $scope.getEvents();
+
+/*
+    $scope.mySplit = function(string, nb) {
+      var array = string.split(';');
+      return array[nb];
+    }
+    */
    
     $scope.goToIndex = function() {
         window.location.href = 'index.html';

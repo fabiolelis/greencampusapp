@@ -29,6 +29,9 @@ angular.module('species', ['ionic'])
     $scope.species;
     $scope.getSpecies = function(){
 
+        $scope.loading = true;
+        $scope.connError = false;
+
         $http({
               method : 'GET',
               url : address + '?id=' + speciesId,
@@ -38,9 +41,13 @@ angular.module('species', ['ionic'])
                   var obj = res.species;
                   $scope.species = obj;
                   $scope.buildHtml();
+                  $scope.loading = false;
 
               }).error(function(error){
                   $scope.res = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
+
         });
 
     };

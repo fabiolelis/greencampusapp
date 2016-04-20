@@ -29,6 +29,9 @@ angular.module('tree', ['ionic'])
     $scope.tree = null;
     $scope.getSpecies = function(){
 
+        $scope.loading = true;
+        $scope.connError = false;
+
         $http({
               method : 'GET',
               url : address + '?id=' + speciesId,
@@ -36,15 +39,13 @@ angular.module('tree', ['ionic'])
 
               }).success(function(res){
                   var obj = res.tree;
-                 /* var strRes = obj.identifier;
-                  strRes += "\n" + obj.speciesname;
-                  strRes += "\n" + obj.longitude;
-                  strRes += "\n" + obj.latitude;
-                  $scope.res = strRes;*/
                   $scope.tree = obj;
+                  $scope.loading = false;
 
               }).error(function(error){
                   $scope.res = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
         });
 
     };

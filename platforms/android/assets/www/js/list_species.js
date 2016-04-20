@@ -9,6 +9,9 @@ angular.module('speciesList', ['ionic'])
     $scope.species = [];
     $scope.getSpecies = function(){
 
+        $scope.loading = true;
+        $scope.connError = false;
+        
         $http({
               method : 'GET',
               url : address,
@@ -16,9 +19,12 @@ angular.module('speciesList', ['ionic'])
 
               }).success(function(res){
                   $scope.species = res.Species;
+                  $scope.loading = false;
 
               }).error(function(error){
                   $scope.species = error;
+                  $scope.connError = true;
+                  $scope.loading = false;
         });
 
     };
