@@ -1,7 +1,7 @@
 angular.module('map', ['ionic'])
 
     .controller('MapCtrl', function($scope, $ionicLoading, $compile, $http) {
-
+        
       function initialize() {
 
         $scope.loading = true;

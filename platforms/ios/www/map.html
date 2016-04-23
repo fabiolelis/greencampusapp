@@ -19,17 +19,13 @@
 
   <body ng-controller="MapCtrl" style="margin-bottom: 0;">
     
-    <div ng-show="loading" style="text-align: center;" class="loading"><img src="img/loading.gif" title="Loading" ></div>
-    <div ng-show="!(loading || connError)"  style="max-height: 100%; padding: 5px">
-      <button  class="btn btn-block btn-primary" style="margin-top: 20px;" ng-click="goToIndex()">Home</button>
+   
+          <button  class="btn btn-block btn-primary" style="margin-top: 20px;" ng-click="goToIndex()">Home</button>
 
-      <ion-content style="margin:20px;margin-bottom:0;">
-        <div id="map" ></div>
-      </ion-content>
-    </div>
-    <div ng-show="connError" class="alert alert-warning">
-      <strong>Can't connect to the server</strong> Please check your connection settings
-    </div>
-
+          <ion-content  style="margin:20px;margin-bottom:0;">
+            <div id="map" data-tap-disabled="true"></div>
+          </ion-content>
+    
+  
   </body>
 </html>

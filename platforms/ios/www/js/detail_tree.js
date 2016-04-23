@@ -13,7 +13,7 @@ angular.module('tree', ['ionic'])
     var address = "http://lelis2008.cloudapp.net/greencampusadmin/www/services/tree.php";
     //var address = "http://localhost/gcadmin/www/services/tree.php";
 
-    var speciesId = 0;
+    var treeId = 0;
     var url = window.location.href;
     url = url.split("?");
     if(url.length > 0){
@@ -21,7 +21,7 @@ angular.module('tree', ['ionic'])
       for(var i =0; i < url.length; i++){
         url = url[i].split("=");
         if(url != null && url[0] == "id"){
-            speciesId = url[1];
+            treeId = url[1];
         }
       }
     }
@@ -34,7 +34,7 @@ angular.module('tree', ['ionic'])
 
         $http({
               method : 'GET',
-              url : address + '?id=' + speciesId,
+              url : address + '?id=' + treeId,
               headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
 
               }).success(function(res){
